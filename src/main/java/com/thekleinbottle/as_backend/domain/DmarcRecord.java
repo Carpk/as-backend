@@ -1,9 +1,12 @@
 package com.thekleinbottle.as_backend.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 // v=DMARC1; p=reject; rua=mailto:dmarc_agg@vali.email; 
@@ -15,11 +18,18 @@ public class DmarcRecord {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String rua, ruf, policy, spolicy, rf;
-    private Character adkim, aspf, foption;
+    private Character adkim, aspf, foption; 
     private int pct, ri;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="admin")
+    private Admin admin;
+
+    public DmarcRecord() {
+    }
+
     public DmarcRecord(String rua, String ruf, String policy, String spolicy, String rf, 
-        Character adkim, Character aspf, Character foption, int pct, int ri ) {
+        Character adkim, Character aspf, Character foption, int pct, int ri, Admin admin ) {
         
         super();
         this.rua = rua;
@@ -32,6 +42,7 @@ public class DmarcRecord {
         this.foption = foption;
         this.pct = pct;
         this.ri = ri;
+        this.admin = admin;
     }
 
     public String getRua() {
@@ -112,5 +123,13 @@ public class DmarcRecord {
 
     public void setRi(int ri) {
         this.ri = ri;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 }
