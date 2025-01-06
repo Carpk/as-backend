@@ -10,23 +10,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Admin {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long adminid;
+    private Long userid;
     private String username, firstname, lastname;
+    private boolean isAdmin;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "appuser")
     private List<DmarcRecord> dmarcrecords;
   
-    public Admin() {
+    public AppUser() {
     }
 
-    public Admin(String username, String firstname, String lastname) {
+    public AppUser(String username, String firstname, String lastname) {
         super();
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.isAdmin = false;
     }
 
     public String getFirstname() {

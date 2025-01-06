@@ -8,16 +8,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.thekleinbottle.as_backend.domain.DmarcRecord;
 import com.thekleinbottle.as_backend.domain.DmarcRecordRepository;
-import com.thekleinbottle.as_backend.domain.Admin;
-import com.thekleinbottle.as_backend.domain.AdminRepository;
+import com.thekleinbottle.as_backend.domain.AppUser;
+import com.thekleinbottle.as_backend.domain.AppUserRepository;
 
 @SpringBootApplication
 public class AsBackendApplication implements CommandLineRunner  {
 	private static final Logger logger = LoggerFactory.getLogger(AsBackendApplication.class);
 	private final DmarcRecordRepository repository;
-	private final AdminRepository arepository;
+	private final AppUserRepository arepository;
 
-	public AsBackendApplication(DmarcRecordRepository dRepository, AdminRepository aRepository) {
+	public AsBackendApplication(DmarcRecordRepository dRepository, AppUserRepository aRepository) {
 		this.repository = dRepository; 
 		this.arepository = aRepository;
 	}
@@ -28,11 +28,11 @@ public class AsBackendApplication implements CommandLineRunner  {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Admin admin = new Admin("JMahon", "John", "Mahoney");
-		arepository.save(admin);
+		AppUser user = new AppUser("JMahon", "John", "Mahoney");
+		arepository.save(user);
 
 		repository.save(new DmarcRecord("dmarc@thekleinbottle.com", null, "Reject", 
-		null, null, null, null, null, 100, 86400, admin));
+		null, null, null, null, null, 100, 86400, user));
 
 		for (DmarcRecord record : repository.findAll()) {
 			logger.info("{} {} {}", record.getRua(), record.getPolicy(), record.getPct());
