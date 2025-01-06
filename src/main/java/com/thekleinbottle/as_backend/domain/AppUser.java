@@ -4,9 +4,12 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -17,18 +20,29 @@ public class AppUser {
     private String username, firstname, lastname;
     private boolean isAdmin;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "appuser")
-    private List<DmarcRecord> dmarcrecords;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="account")
+    private Account account;
   
     public AppUser() {
     }
 
-    public AppUser(String username, String firstname, String lastname) {
+    // public AppUser(String username, String firstname, String lastname) {
+    //     super();
+    //     this.username = username;
+    //     this.firstname = firstname;
+    //     this.lastname = lastname;
+    //     this.isAdmin = false;
+    //     this.account = new Account();
+    // }
+
+    public AppUser(String username, String firstname, String lastname, Account account) {
         super();
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.isAdmin = false;
+        this.account = account;
     }
 
     public String getFirstname() {
@@ -55,11 +69,11 @@ public class AppUser {
         this.username = username;
     }
 
-    public List<DmarcRecord> getDmarcRecords() {
-        return dmarcrecords;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setDmarcRecords(List<DmarcRecord> dmarcrecords) {
-        this.dmarcrecords = dmarcrecords;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

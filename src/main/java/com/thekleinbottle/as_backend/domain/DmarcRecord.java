@@ -22,14 +22,14 @@ public class DmarcRecord {
     private int pct, ri;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="appuser")
-    private AppUser appuser;
+    @JoinColumn(name="account")
+    private Account account;
 
     public DmarcRecord() {
     }
 
     public DmarcRecord(String rua, String ruf, String policy, String spolicy, String rf, 
-        Character adkim, Character aspf, Character foption, int pct, int ri, AppUser appuser ) {
+        Character adkim, Character aspf, Character foption, int pct, int ri, Account acct ) {
         
         super();
         this.rua = rua;
@@ -42,7 +42,7 @@ public class DmarcRecord {
         this.foption = foption;
         this.pct = pct;
         this.ri = ri;
-        this.appuser = appuser;
+        this.account = acct;
     }
 
     public String getRua() {
@@ -125,11 +125,11 @@ public class DmarcRecord {
         this.ri = ri;
     }
 
-    public AppUser getUser() {
-        return appuser;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUser(AppUser appuser) {
-        this.appuser = appuser;
+    public void setUser(Account account) {
+        this.account = account;
     }
 }
