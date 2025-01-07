@@ -9,15 +9,15 @@ import com.thekleinbottle.as_backend.domain.DmarcRecordRepository;
   
 @RestController
 public class DmarcController {
-    // private final DmarcRecordRepository repository;
+    private final DmarcRecordRepository repository;
 
-    public DmarcController() {
-        // this.repository = repository;
+    public DmarcController(DmarcRecordRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("/dmarc")
-    public String getDmarcRecord() {
-        return new String("Hello");
+    public Iterable<DmarcRecord> getDmarcRecord() {
+        return repository.findAll();
     }
     
 }

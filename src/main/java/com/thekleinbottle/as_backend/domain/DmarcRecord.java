@@ -9,9 +9,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 
-// v=DMARC1; p=reject; rua=mailto:dmarc_agg@vali.email; 
-// ruf=mailto:dmarc_agg@vali.email; sp=reject; fo=0
-
 @Entity
 public class DmarcRecord {
     @Id
@@ -129,7 +126,7 @@ public class DmarcRecord {
         return account;
     }
 
-    public void setUser(Account account) {
+    public void setAccount(Account account) {
         this.account = account;
     }
 }
