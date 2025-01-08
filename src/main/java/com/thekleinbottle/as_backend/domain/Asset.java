@@ -19,10 +19,13 @@ public class Asset {
     @JoinColumn(name="account")
     private Account account;
 
+    @JoinColumn(name="appuser")
+    private AppUser appuser;
+
     public Asset() {}
 
     public Asset(String number, String name, String make, String model, 
-            String serial, Account account) {
+            String serial, Account account, AppUser appuser) {
         super();
         this.number = number; 
         this.name = name;
@@ -30,7 +33,35 @@ public class Asset {
         this.model = model;
         this.serial = serial;
         this.account = account;
+        this.appuser = appuser;
     }
 
+    public String getNumber() {
+        return number;
+    } 
+
+    public String getName() {
+        return name;
+    } 
+    
+    public String getmanufacturer() {
+        return make;
+    } 
+    
+    public String getModel() {
+        return model;
+    } 
+
+    public String getSerial() {
+        return serial;
+    }
+    
+    public Account getAccount() {
+        return account;
+    }
+
+    public AppUser getAppUser() {
+        return appuser;
+    }
 
 }

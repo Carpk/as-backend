@@ -12,17 +12,18 @@ import com.thekleinbottle.as_backend.domain.AppUser;
 import com.thekleinbottle.as_backend.domain.AppUserRepository;
 import com.thekleinbottle.as_backend.domain.Account;
 import com.thekleinbottle.as_backend.domain.AccountRepository;
+import com.thekleinbottle.as_backend.domain.Asset;
 
 @SpringBootApplication
 public class AsBackendApplication implements CommandLineRunner  {
 	private static final Logger logger = LoggerFactory.getLogger(AsBackendApplication.class);
-	private final DmarcRecordRepository repository;
+	private final DmarcRecordRepository dmarcRepository;
 	private final AppUserRepository userRepository;
 	private final AccountRepository acctRepository;
 
 	public AsBackendApplication(DmarcRecordRepository dmarcRepository, AppUserRepository userRepository,
 			AccountRepository accountRepository) {
-		this.repository = dmarcRepository; 
+		this.dmarcRepository = dmarcRepository; 
 		this.userRepository = userRepository;
 		this.acctRepository = accountRepository;
 	}
@@ -40,12 +41,21 @@ public class AsBackendApplication implements CommandLineRunner  {
 		userRepository.save(user);
 		
 
-		repository.save(new DmarcRecord("dmarc@thekleinbottle.com", null, "Reject", 
+		dmarcRepository.save(new DmarcRecord("dmarc@thekleinbottle.com", null, "Reject", 
 		null, null, null, null, null, 100, 86400, acct));
 
-		for (DmarcRecord record : repository.findAll()) {
+		dmarcRepository.save(new DmarcRecord("me@shawnklein.net", null, "Quarantine", 
+		null, null, null, null, null, 100, 86400, acct));
+
+		new Asset("B127", null, null, null, null, null);
+
+
+		for (DmarcRecord record : dmarcRepository.findAll()) {
 			logger.info("{} {} {}", record.getRua(), record.getPolicy(), record.getPct());
 		}
+
+
+		// Asset(String number, String name, String make, String model, String serial, Account account) {
 	}
 
 }
