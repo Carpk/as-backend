@@ -32,6 +32,13 @@ public class HelpTicket {
 
 
 
+    public boolean getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
 
 
 }

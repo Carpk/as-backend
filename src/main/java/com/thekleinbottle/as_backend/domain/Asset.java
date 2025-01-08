@@ -13,25 +13,29 @@ public class Asset {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String number, name, make, model, serial; 
+    private String number, location, name, make, model, cpu, vcard, serial; 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account")
     private Account account;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="appuser")
     private AppUser appuser;
 
     public Asset() {}
 
-    public Asset(String number, String name, String make, String model, 
-            String serial, Account account, AppUser appuser) {
+    public Asset(String number, String location, String name, String make, String model, 
+            String serial, String cpu, String vcard, Account account, AppUser appuser) {
         super();
         this.number = number; 
+        this.location = location;
         this.name = name;
         this.make = make;
         this.model = model;
         this.serial = serial;
+        this.cpu = cpu;
+        this.vcard = vcard;
         this.account = account;
         this.appuser = appuser;
     }

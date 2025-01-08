@@ -13,6 +13,7 @@ import com.thekleinbottle.as_backend.domain.AppUserRepository;
 import com.thekleinbottle.as_backend.domain.Account;
 import com.thekleinbottle.as_backend.domain.AccountRepository;
 import com.thekleinbottle.as_backend.domain.Asset;
+import com.thekleinbottle.as_backend.domain.AssetRepository;
 
 @SpringBootApplication
 public class AsBackendApplication implements CommandLineRunner  {
@@ -20,12 +21,14 @@ public class AsBackendApplication implements CommandLineRunner  {
 	private final DmarcRecordRepository dmarcRepository;
 	private final AppUserRepository userRepository;
 	private final AccountRepository acctRepository;
+	private final AssetRepository assetRepository;
 
 	public AsBackendApplication(DmarcRecordRepository dmarcRepository, AppUserRepository userRepository,
-			AccountRepository accountRepository) {
+			AccountRepository accountRepository, AssetRepository assetRepository) {
 		this.dmarcRepository = dmarcRepository; 
 		this.userRepository = userRepository;
 		this.acctRepository = accountRepository;
+		this.assetRepository = assetRepository;
 	}
 
 	public static void main(String[] args) {
@@ -47,7 +50,8 @@ public class AsBackendApplication implements CommandLineRunner  {
 		dmarcRepository.save(new DmarcRecord("me@shawnklein.net", null, "Quarantine", 
 		null, null, null, null, null, 100, 86400, acct));
 
-		new Asset("B127", null, null, null, null, null);
+		assetRepository.save(new Asset("D127", "FloorR1D3", null, "Asus P570", null, null,
+		 "i7-13770k", null, null, user));
 
 
 		for (DmarcRecord record : dmarcRepository.findAll()) {
