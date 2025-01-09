@@ -51,7 +51,7 @@ public class AsBackendApplication implements CommandLineRunner  {
 		null, null, null, null, null, 100, 86400, acct));
 
 		assetRepository.save(new Asset("D127", "FloorR1D3", null, "Asus P570", null, null,
-		 "i7-13770k", null, null, user));
+		"i7-13770k", null, null, user));
 
 
 		for (DmarcRecord record : dmarcRepository.findAll()) {
