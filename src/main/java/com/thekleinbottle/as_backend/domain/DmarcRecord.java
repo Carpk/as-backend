@@ -1,5 +1,8 @@
 package com.thekleinbottle.as_backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class DmarcRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,6 +22,7 @@ public class DmarcRecord {
     private Character adkim, aspf, foption; 
     private int pct, ri;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account")
     private Account account;
