@@ -9,9 +9,10 @@ import io.swagger.v3.oas.models.info.Info;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI AsOpenAPI() {
+    public OpenAPI asOpenAPI() {
         return new OpenAPI()
             .info(new Info()
-                .title("Atlas Solutions"));
+                .title("Atlas Solutions")
+                .version("1.0"));
     }
 }

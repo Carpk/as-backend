@@ -37,7 +37,7 @@ public class Account {
     
     public Account() {}
 
-    public List<DmarcRecord> getDarcRecords() {
+    public List<DmarcRecord> getDmarcRecords() {
         return dmarcrecords;
     }
 

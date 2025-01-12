@@ -1,13 +1,11 @@
 package com.thekleinbottle.as_backend.web;
 
 import org.springframework.web.bind.annotation.RestController;
-
-import com.thekleinbottle.as_backend.domain.HelpTicket;
-import com.thekleinbottle.as_backend.domain.HelpTicketRepository;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.thekleinbottle.as_backend.domain.HelpTicket;
+import com.thekleinbottle.as_backend.domain.HelpTicketRepository;
 
 @RestController
 public class HelpTicketController {

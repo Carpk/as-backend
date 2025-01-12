@@ -16,8 +16,8 @@ public class AccountController {
 
 
     @GetMapping("/account")
-    public String getAccount() {
-        return new String("Your Account"); 
+    public Iterable<Account> getAccount() {
+        return repository.findAll();
     }  
 
 }
