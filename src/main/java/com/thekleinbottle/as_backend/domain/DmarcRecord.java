@@ -49,6 +49,10 @@ public class DmarcRecord {
         this.account = acct;
     }
 
+    public Long getId() {
+        return id;
+    }
+    
     public String getRua() {
         return rua;
     }

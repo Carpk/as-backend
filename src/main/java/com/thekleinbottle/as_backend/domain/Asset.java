@@ -42,6 +42,10 @@ public class Asset {
         this.appuser = appuser;
     }
 
+    public Long getId() {
+        return id;
+    }
+    
     public String getNumber() {
         return number;
     } 

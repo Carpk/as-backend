@@ -45,4 +45,8 @@ public class Account {
         return appusers;
     }
 
+    public Long getId() {
+        return id;
+    }
+
 }

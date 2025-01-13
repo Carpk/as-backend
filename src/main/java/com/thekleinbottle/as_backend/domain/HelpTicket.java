@@ -30,7 +30,9 @@ public class HelpTicket {
         this.isOpen = true;
     }
 
-
+    public Long getId() {
+        return id;
+    }
 
     public boolean getIsOpen() {
         return isOpen;

@@ -20,7 +20,7 @@ import jakarta.persistence.OneToMany;
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userid;
+    private Long id;
     private String username, firstname, lastname;
     private boolean isAdmin;
 
@@ -52,6 +52,10 @@ public class AppUser {
         this.lastname = lastname;
         this.isAdmin = false;
         this.account = account;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstname() {
