@@ -1,5 +1,7 @@
 package com.thekleinbottle.as_backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -42,5 +44,9 @@ public class HelpTicket {
         this.isOpen = isOpen;
     }
 
+    @JsonIgnore
+    public AppUser getAppUser() {
+        return appuser;
+    }
 
 }

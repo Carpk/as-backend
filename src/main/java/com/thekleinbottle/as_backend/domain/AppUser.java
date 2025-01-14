@@ -24,14 +24,12 @@ public class AppUser {
     private String username, firstname, lastname;
     private boolean isAdmin;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account")
     private Account account;
 
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "appuser")
-    private List<HelpTicket> ticket;
+    private List<HelpTicket> tickets;
   
     public AppUser() {
     }
@@ -82,11 +80,17 @@ public class AppUser {
         this.username = username;
     }
 
+    @JsonIgnore
     public Account getAccount() {
         return account;
     }
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @JsonIgnore
+    public List<HelpTicket> getHelpTickets() {
+        return tickets;
     }
 }

@@ -24,7 +24,6 @@ public class DmarcRecord {
     private int pct, ri;
 
     @NotNull
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account")
     private Account account;
@@ -133,6 +132,7 @@ public class DmarcRecord {
         this.ri = ri;
     }
 
+    @JsonIgnore
     public Account getAccount() {
         return account;
     }
