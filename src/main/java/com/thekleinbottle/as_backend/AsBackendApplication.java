@@ -40,7 +40,7 @@ public class AsBackendApplication implements CommandLineRunner  {
 		Account acct = new Account();
 		acctRepository.save(acct);
 
-		AppUser user = new AppUser("JMahon", "John", "Mahoney", acct);
+		AppUser user = new AppUser("JMahon", "password", "John", "Mahoney", acct);
 		userRepository.save(user);
 		
 

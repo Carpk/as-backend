@@ -8,9 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface HelpTicketRepository extends CrudRepository <HelpTicket, Long> {
 
-    // @Query("select t from HelpTicket t where t.isOpen = true")
+    @Query("select t from HelpTicket t where t.isOpen = true")
     List<HelpTicket> findByIsOpen(@Param("isOpen") boolean isOpen);
-
-
 
 }

@@ -3,6 +3,7 @@ package com.thekleinbottle.as_backend.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import jakarta.validation.constraints.NotNull;
 public class DmarcRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable=false, updatable=false)
     private Long id;
     private String rua, ruf, policy, spolicy, rf;
     private Character adkim, aspf, foption; 

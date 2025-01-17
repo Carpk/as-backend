@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,8 +21,16 @@ import jakarta.persistence.OneToMany;
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable=false, updatable=false)
     private Long id;
-    private String username, firstname, lastname;
+
+    @Column(nullable=false, unique=true)
+    private String username;
+
+    @Column(nullable=false)
+    private String password;
+
+    private String firstname, lastname;
     private boolean isAdmin;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,9 +52,10 @@ public class AppUser {
     //     this.account = new Account();
     // }
 
-    public AppUser(String username, String firstname, String lastname, Account account) {
+    public AppUser(String username, String password, String firstname, String lastname, Account account) {
         super();
         this.username = username;
+        this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.isAdmin = false;
