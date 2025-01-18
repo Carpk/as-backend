@@ -52,10 +52,11 @@ public class AppUser {
     //     this.account = new Account();
     // }
 
-    public AppUser(String username, String password, String firstname, String lastname, Account account) {
+    public AppUser(String username, String password, String role, String firstname, String lastname, Account account) {
         super();
         this.username = username;
         this.password = password;
+        this.role = role;
         this.firstname = firstname;
         this.lastname = lastname;
         this.isAdmin = false;
