@@ -30,7 +30,7 @@ public class AppUser {
     @Column(nullable=false)
     private String password;
 
-    private String firstname, lastname;
+    private String role, firstname, lastname;
     private boolean isAdmin;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -66,6 +66,22 @@ public class AppUser {
         return id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
     public String getFirstname() {
         return firstname;
     }
@@ -80,14 +96,6 @@ public class AppUser {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     @JsonIgnore
