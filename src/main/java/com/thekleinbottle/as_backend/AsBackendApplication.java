@@ -58,9 +58,6 @@ public class AsBackendApplication implements CommandLineRunner  {
 		for (DmarcRecord record : dmarcRepository.findAll()) {
 			logger.info("{} {} {}", record.getRua(), record.getPolicy(), record.getPct());
 		}
-
-
-		// Asset(String number, String name, String make, String model, String serial, Account account) {
 	}
 
 }
