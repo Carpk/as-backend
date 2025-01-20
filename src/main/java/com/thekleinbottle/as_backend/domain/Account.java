@@ -22,6 +22,8 @@ public class Account {
     @Column(nullable=false, updatable=false)
     private Long id;
     
+    private String name;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     private List<DmarcRecord> dmarcrecords;
     
@@ -31,8 +33,16 @@ public class Account {
     
     public Account() {}
 
+    public Account(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @JsonIgnore
