@@ -29,6 +29,9 @@ public class Account {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     private List<AppUser> appusers;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+    private List<DmarcReport> dmarcreports;
     
     
     public Account() {}

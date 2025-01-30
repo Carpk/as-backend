@@ -20,6 +20,7 @@ public class HelpTicket {
 
     @Column(nullable=false)
     private String title, text;
+    private int urgency;
     private boolean isOpen;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,10 +34,23 @@ public class HelpTicket {
         this.text = text;
         this.appuser = appuser;
         this.isOpen = true;
+        this.urgency = 4;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public int getUrgency() {
+        return urgency;
     }
 
     public boolean getIsOpen() {
