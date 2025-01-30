@@ -45,8 +45,10 @@ public class DmarcItem {
         this.headerDomain = headerDomain;
         this.dkimDomain = dkimDomain;
         this.dkimSelector = dkimSelector;
+        // this.dkimResult
         this.spfDomain = spfDomain;
         this.spfScope = spfScope;
+        // this.spfResult
         this.report = report;
     }
 }

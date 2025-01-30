@@ -1,5 +1,7 @@
 package com.thekleinbottle.as_backend;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -17,23 +19,32 @@ import com.thekleinbottle.as_backend.domain.Asset;
 import com.thekleinbottle.as_backend.domain.AssetRepository;
 import com.thekleinbottle.as_backend.domain.HelpTicket;
 import com.thekleinbottle.as_backend.domain.HelpTicketRepository;
+import com.thekleinbottle.as_backend.domain.DmarcReport;
+import com.thekleinbottle.as_backend.domain.DmarcReportRepository;
+import com.thekleinbottle.as_backend.domain.DmarcItem;
+import com.thekleinbottle.as_backend.domain.DmarcItemRepository;
 
 @SpringBootApplication
 public class AsBackendApplication implements CommandLineRunner  {
 	private static final Logger logger = LoggerFactory.getLogger(AsBackendApplication.class);
-	private final DmarcRecordRepository dmarcRepository;
+	private final DmarcRecordRepository recordRepository;
 	private final AppUserRepository userRepository;
 	private final AccountRepository acctRepository;
 	private final AssetRepository assetRepository;
 	private final HelpTicketRepository ticketRepository;
+	private final DmarcReportRepository reportRepository;
+	private final DmarcItemRepository dItemRepository;
 
-	public AsBackendApplication(DmarcRecordRepository dmarcRepository, AppUserRepository userRepository,
-			AccountRepository accountRepository, AssetRepository assetRepository, HelpTicketRepository ticketRepository) {
-		this.dmarcRepository = dmarcRepository; 
+
+	public AsBackendApplication(DmarcRecordRepository recordRepository, AppUserRepository userRepository, AccountRepository accountRepository,
+			AssetRepository assetRepository, HelpTicketRepository ticketRepository, DmarcReportRepository reportRepository, DmarcItemRepository dItemRepository) {
+		this.recordRepository = recordRepository; 
 		this.userRepository = userRepository;
 		this.acctRepository = accountRepository;
 		this.assetRepository = assetRepository;
 		this.ticketRepository = ticketRepository;
+		this.reportRepository = reportRepository;
+		this.dItemRepository = dItemRepository;
 	}
 
 	public static void main(String[] args) {
@@ -52,9 +63,9 @@ public class AsBackendApplication implements CommandLineRunner  {
 		userRepository.save(user);
 		userRepository.save(user2);
 
-		dmarcRepository.save(new DmarcRecord("dmarc@thekleinbottle.com", null, "Reject", 
+		recordRepository.save(new DmarcRecord("dmarc@thekleinbottle.com", null, "Reject", 
 		null, null, null, null, null, 100, 86400, acct));
-		dmarcRepository.save(new DmarcRecord("me@shawnklein.net", null, "Quarantine", 
+		recordRepository.save(new DmarcRecord("me@shawnklein.net", null, "Quarantine", 
 		null, null, null, null, null, 75, 86400, acct));
 
 		assetRepository.save(new Asset("D127", "FloorR1D3", null, "Asus P570", null, null,
@@ -70,6 +81,20 @@ public class AsBackendApplication implements CommandLineRunner  {
 		ticketRepository.save(new HelpTicket("Ticket 4", "ticket text", user2));
 		ticketRepository.save(new HelpTicket("Ticket 5", "ticket text", user2));
 		ticketRepository.save(new HelpTicket("Ticket 6", "ticket text", user2));
+
+		DmarcReport report = new DmarcReport("Enterprise Outlook", "dmarc@goo.com", "c3bcff5cbaef4d9da62e9ea8a", new Date(1734307200), 
+				new Date(1734393600), "chucksburgers.org", null, null, null, null, acct);
+		reportRepository.save(report);
+
+		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.1.1.20", "burtsburittos.net", 
+			"chucksburgers.org", "chucksburgers.org", "chucksburgers.org", "selector 2", 
+			"chucksburgers.org", "mfrom", report));
+		dItemRepository.save(new DmarcItem(2, "reject", false, false, "10.1.87.20", "tomstacos.org", 
+			"philspastries.is", "chucksburgers.org", "chucksburgers.org", "selector 2", 
+			"chucksburgers.org", "mfrom", report));
+		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.50.38.20", "jimsjuice.net", 
+			"chucksburgers.org", "chucksburgers.org", "chucksburgers.org", "selector 2", 
+			"chucksburgers.org", "mfrom", report));
 
 	}
 
