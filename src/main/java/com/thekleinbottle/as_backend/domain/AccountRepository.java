@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface AccountRepository extends CrudRepository<Account, Long>{
+public interface AccountRepository extends CrudRepository<Account, Long> {
     
     // List<Account> findByDmarcRecords(List<DmarcRecord> dmarcRecords);
     

@@ -40,6 +40,9 @@ public class AppUser {
     @JoinColumn(name="account")
     private Account account;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    private List<Announcement> announcements;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "appuser")
     private List<HelpTicket> tickets;
   

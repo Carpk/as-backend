@@ -53,4 +53,8 @@ public class DmarcReport {
         this.policySubdomain = policySubdomain;
         this.account = account;
     }
+
+    public List<DmarcItem> getDmarcItems() {
+        return dmarcitems;
+    }
 }

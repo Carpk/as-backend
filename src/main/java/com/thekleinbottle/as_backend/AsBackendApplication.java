@@ -82,8 +82,9 @@ public class AsBackendApplication implements CommandLineRunner  {
 		ticketRepository.save(new HelpTicket("Ticket 5", "ticket text", user2));
 		ticketRepository.save(new HelpTicket("Ticket 6", "ticket text", user2));
 
-		DmarcReport report = new DmarcReport("Enterprise Outlook", "dmarc@goo.com", "c3bcff5cbaef4d9da62e9ea8a", new Date(1734307200), 
-				new Date(1734393600), "chucksburgers.org", null, null, null, null, acct);
+		DmarcReport report = new DmarcReport("Enterprise Outlook", "dmarc@micronoft.com", "c3bcff5cbaef4d9da62e9ea8a", 
+			new Date(1734307200), new Date(1734393600), "chucksburgers.org", null, null, 
+			"reject", null, acct);
 		reportRepository.save(report);
 
 		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.1.1.20", "burtsburittos.net", 
@@ -95,6 +96,11 @@ public class AsBackendApplication implements CommandLineRunner  {
 		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.50.38.20", "jimsjuice.net", 
 			"chucksburgers.org", "chucksburgers.org", "chucksburgers.org", "selector 2", 
 			"chucksburgers.org", "mfrom", report));
+
+		DmarcReport report2 = new DmarcReport("Mimecast", "no-reply@mimecastreports.com", "5d9523a5ca19d1c613bf2f28246d6b54", 
+			new Date(1734393600), new Date(1734479999), "chucksburgers.org", null, null, 
+			"reject", null, acct);
+		reportRepository.save(report2);
 
 	}
 
