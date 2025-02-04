@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 // dont export methods to api
-@RepositoryRestResource(exported = false)
+// @RepositoryRestResource(exported = false)
 public interface AppUserRepository extends CrudRepository<AppUser, Long> {
 
     List<AppUser> findByAccount(Account account);

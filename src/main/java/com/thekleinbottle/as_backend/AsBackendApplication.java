@@ -23,6 +23,8 @@ import com.thekleinbottle.as_backend.domain.DmarcReport;
 import com.thekleinbottle.as_backend.domain.DmarcReportRepository;
 import com.thekleinbottle.as_backend.domain.DmarcItem;
 import com.thekleinbottle.as_backend.domain.DmarcItemRepository;
+import com.thekleinbottle.as_backend.domain.Announcement;
+import com.thekleinbottle.as_backend.domain.AnnouncementRepository;
 
 @SpringBootApplication
 public class AsBackendApplication implements CommandLineRunner  {
@@ -34,10 +36,12 @@ public class AsBackendApplication implements CommandLineRunner  {
 	private final HelpTicketRepository ticketRepository;
 	private final DmarcReportRepository reportRepository;
 	private final DmarcItemRepository dItemRepository;
+	private final AnnouncementRepository anncRepository;
 
 
-	public AsBackendApplication(DmarcRecordRepository recordRepository, AppUserRepository userRepository, AccountRepository accountRepository,
-			AssetRepository assetRepository, HelpTicketRepository ticketRepository, DmarcReportRepository reportRepository, DmarcItemRepository dItemRepository) {
+	public AsBackendApplication(DmarcRecordRepository recordRepository, AppUserRepository userRepository, 
+			AccountRepository accountRepository, AssetRepository assetRepository, HelpTicketRepository ticketRepository, 
+			DmarcReportRepository reportRepository, DmarcItemRepository dItemRepository, AnnouncementRepository anncRepository) {
 		this.recordRepository = recordRepository; 
 		this.userRepository = userRepository;
 		this.acctRepository = accountRepository;
@@ -45,6 +49,7 @@ public class AsBackendApplication implements CommandLineRunner  {
 		this.ticketRepository = ticketRepository;
 		this.reportRepository = reportRepository;
 		this.dItemRepository = dItemRepository;
+		this.anncRepository = anncRepository;
 	}
 
 	public static void main(String[] args) {
@@ -53,7 +58,7 @@ public class AsBackendApplication implements CommandLineRunner  {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Account acct = new Account();
+		Account acct = new Account("TinosPizza");
 		acctRepository.save(acct);
 
 		AppUser user = new AppUser("admin", "$2a$10$8cjz47bjbR4Mn8GMg9IZx.vyjhLXR/SKKMSZ9.mP9vpMu0ssKi8GW", 
@@ -75,33 +80,35 @@ public class AsBackendApplication implements CommandLineRunner  {
 		assetRepository.save(new Asset("R184", "Room134", null, "lenovo p5", null, "M64D752",
 			"i9-8870", null, acct, user2));
 
-		ticketRepository.save(new HelpTicket("Ticket 1", "ticket text", user2));
-		ticketRepository.save(new HelpTicket("Ticket 2", "ticket text", user2));
-		ticketRepository.save(new HelpTicket("Ticket 3", "ticket text", user2));
-		ticketRepository.save(new HelpTicket("Ticket 4", "ticket text", user2));
-		ticketRepository.save(new HelpTicket("Ticket 5", "ticket text", user2));
-		ticketRepository.save(new HelpTicket("Ticket 6", "ticket text", user2));
+		ticketRepository.save(new HelpTicket("Ticket 1", "ticket text 1", user2));
+		ticketRepository.save(new HelpTicket("Ticket 2", "ticket text 2", user2));
+		ticketRepository.save(new HelpTicket("Ticket 3", "ticket text 3", user2));
+		ticketRepository.save(new HelpTicket("Ticket 4", "ticket text 4", user2));
+		ticketRepository.save(new HelpTicket("Ticket 5", "ticket text 5", user2));
+		ticketRepository.save(new HelpTicket("Ticket 6", "ticket text 6", user2));
 
 		DmarcReport report = new DmarcReport("Enterprise Outlook", "dmarc@micronoft.com", "c3bcff5cbaef4d9da62e9ea8a", 
 			new Date(1734307200), new Date(1734393600), "chucksburgers.org", null, null, 
 			"reject", null, acct);
 		reportRepository.save(report);
 
-		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.1.1.20", "burtsburittos.net", 
-			"chucksburgers.org", "chucksburgers.org", "chucksburgers.org", "selector 2", 
-			"chucksburgers.org", "mfrom", report));
-		dItemRepository.save(new DmarcItem(2, "reject", false, false, "10.1.87.20", "tomstacos.org", 
-			"philspastries.is", "chucksburgers.org", "chucksburgers.org", "selector 2", 
-			"chucksburgers.org", "mfrom", report));
-		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.50.38.20", "jimsjuice.net", 
-			"chucksburgers.org", "chucksburgers.org", "chucksburgers.org", "selector 2", 
-			"chucksburgers.org", "mfrom", report));
+		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.1.1.20", 
+			"burtsburittos.net", "chucksburgers.org", "chucksburgers.org", "chucksburgers.org", 
+			"selector 2", "chucksburgers.org", "mfrom", report));
+		dItemRepository.save(new DmarcItem(2, "reject", false, false, "10.1.87.20", 
+			"tomstacos.org", "philspastries.is", "chucksburgers.org", "chucksburgers.org", 
+			"selector 2", "chucksburgers.org", "mfrom", report));
+		dItemRepository.save(new DmarcItem(1, "none", true, true, "10.50.38.20", 
+			"jimsjuice.net", "chucksburgers.org", "chucksburgers.org", "chucksburgers.org", 
+			"selector 2", "chucksburgers.org", "mfrom", report));
 
 		DmarcReport report2 = new DmarcReport("Mimecast", "no-reply@mimecastreports.com", "5d9523a5ca19d1c613bf2f28246d6b54", 
 			new Date(1734393600), new Date(1734479999), "chucksburgers.org", null, null, 
 			"reject", null, acct);
 		reportRepository.save(report2);
-
+ 
+		anncRepository.save(new Announcement("Notice of System Changes", "system will be offline", new Date(), user));
+		anncRepository.save(new Announcement("Change of Hours", "", new Date(), user));
 	}
 
 }
