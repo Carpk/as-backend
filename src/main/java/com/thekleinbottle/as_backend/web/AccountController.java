@@ -20,20 +20,15 @@ public class AccountController {
         this.repository = repository;
     }
 
-    @GetMapping("/account/{id}")
-    public Optional<Account> getAccount(@PathVariable Long id) {
-        Optional<Account> acct = repository.findById(id);
-        return acct;
-    } 
+    // @GetMapping("/account/{id}")
+    // public String getAccount(Account account, @PathVariable Long id) {
+    //     // Optional<Account> acct = repository.findById(id);
+    //     return "test";
+    // } 
 
     @GetMapping("/accounts")
     public Iterable<Account> getAccounts() {
         return repository.findAll();
     }  
 
-    @GetMapping("/account/{id}/appusersCount")
-    public int getAppusersCount(@PathVariable Long id) {
-        Optional<Account> account = repository.findById(id);
-        return 3;
-    }
 }

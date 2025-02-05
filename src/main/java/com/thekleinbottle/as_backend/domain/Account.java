@@ -59,5 +59,16 @@ public class Account {
         return appusers;
     }
 
+    public int getDmarcRecordsCount() {
+        return dmarcrecords.size();
+    }
+
+    public int getDmarcReportsCount() {
+        return dmarcreports.size();
+    }
+
+    public int getAppusersCount() {
+        return appusers.size();
+    }
 
 }

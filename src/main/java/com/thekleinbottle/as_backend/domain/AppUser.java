@@ -30,6 +30,7 @@ public class AppUser {
     @Column(nullable=false, unique=true)
     private String username;
 
+    @JsonIgnore
     @Column(nullable=false)
     private String password;
 
@@ -117,5 +118,9 @@ public class AppUser {
     @JsonIgnore
     public List<HelpTicket> getHelpTickets() {
         return tickets;
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
     }
 }
